@@ -1,0 +1,102 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="{{ LANGUAGE_CODE|default:"en-gb" }}">
+<head>
+<title>{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}</title>
+<meta charset="utf-8">
+<meta name="created" content="{% now "jS M Y h:i" %}" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="{% block viewport %}width=device-width{% endblock %}, initial-scale=1, shrink-to-fit=no">
+
+<meta name="description" content="{% block description %}{% endblock %}">
+
+{% block favicon %}
+    <link rel="shortcut icon" href="{% static "oscar/favicon.ico" %}" />
+{% endblock %}
+
+        {# Block where global CSS will go. #}
+        {% block styles %}{% endblock %}
+
+        {# Additional CSS - specific to certain pages #}
+        {% block extrastyles %}{% endblock %}
+
+        {% block extrahead %}{% endblock %}
+
+        {% block tracking %}
+            {# Default to using Google analytics #}
+            {% include "oscar/partials/google_analytics.html" %}
+        {% endblock %}
+
+
+
+</head>
+<body id="{% block body_id %}default{% endblock %}">
+
+{% block layout %}{% endblock %}
+
+
+
+
+<!-- <div class="container"> -->
+<!-- ========================= SECTION MAIN  ========================= -->
+
+<!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
+
+<!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->	
+
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- =============== SECTION DEAL =============== -->
+
+<!-- =============== SECTION DEAL // END =============== -->
+
+<!-- =============== SECTION 1 =============== -->
+
+<!-- =============== SECTION 1 END =============== -->
+
+<!-- =============== SECTION 2 =============== -->
+
+<!-- =============== SECTION 2 END =============== -->
+
+
+
+<!-- =============== SECTION REQUEST =============== -->
+
+
+<!-- =============== SECTION REQUEST .//END =============== -->
+
+
+<!-- =============== SECTION ITEMS =============== -->
+
+<!-- =============== SECTION ITEMS .//END =============== -->
+
+
+<!-- =============== SECTION SERVICES =============== -->
+
+<!-- =============== SECTION SERVICES .//END =============== -->
+
+<!-- </div>  -->
+<!-- container end.// -->
+
+
+        {# Local scripts #}
+        {% block scripts %}
+        {% endblock %}
+
+        {# Additional JS scripts #}
+        {% block extrascripts %}{% endblock %}
+
+        {# Block for body onload functions #}
+        <script>
+            $(function() {
+                {% block onbodyload %}{% endblock %}
+            });
+        </script>
+
+        {# Page meta-data - this is populated by the 'metadata' template context processor #}
+
+
+</body>
+</html>

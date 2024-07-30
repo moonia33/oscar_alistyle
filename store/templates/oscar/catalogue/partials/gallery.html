@@ -1,0 +1,77 @@
+{% load i18n %}
+{% load image_tags %}
+
+{% with all_images=product.get_all_images %}
+    {# use length rather then count as the images get queried anyways #}
+
+    {% if all_images|length > 1 %}
+
+        <div id="product_gallery" class="card">
+          <article class="gallery-wrap"> 
+          {% for image in all_images %}
+          
+            <div class="img-big-wrap">
+	           <div> 
+               {% if forloop.first %}
+               {% oscar_thumbnail image.original "440x400" upscale=False as thumb %}
+               <a href="{{ image.original.url }}" data-lightbox="product-gallery" data-title="{{ product.title }}"><img src="{{ thumb.url }}"  alt="{{ product.get_title }}"></a>
+               {% endif %} 
+               </div>
+	        </div> 
+          
+          {% endfor %}
+           <!-- slider-product.// -->
+            <div class="thumbs-wrap">
+            {% for image in all_images %}
+            {% oscar_thumbnail image.original "65x55" crop="center" as thumb %}
+            <span data-target="#product_gallery" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}">
+                <a href="{{ image.original.url }}" data-lightbox="product-gallery" data-title="{{ product.title }}" class="item-thumb"> <img src="{{ thumb.url }}"></a>
+            </span>
+            {% endfor %}    
+            </div> <!-- slider-nav.// -->
+          
+
+
+
+           {% comment %} <div class="img-thumbnail mb-3">
+                <div class="carousel-inner">
+                    
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        {% oscar_thumbnail image.original "440x400" upscale=False as thumb %}
+                        <img src="{{ thumb.url }}" class="img-fluid" alt="{{ product.get_title }}" />
+                    </div>
+                {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#product_gallery" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">{% trans "Previous" %}</span>
+                </a>
+                <a class="carousel-control-next" href="#product_gallery" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">{% trans "Next" %}</span>
+                </a>
+            </div>
+
+            <ol class="carousel-indicators img-thumbnail">
+                {% for image in all_images %}
+                    <li data-target="#product_gallery" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}">
+                        {% oscar_thumbnail image.original "65x55" crop="center" as thumb %}
+                        <img src="{{ thumb.url }}" class="img-fluid" alt="{{ product.get_title }}" />
+                    </li>
+                {% endfor %}
+            </ol> {% endcomment %}
+          </article>
+        </div>
+
+    {% else %}
+
+        {# Only one image to show #}
+        <div id="product_gallery" class="img-big-wrap">               
+                    {% with image=product.primary_image %}
+                        {% oscar_thumbnail image.original "600x400" upscale=True as thumb %}
+                        <img src="{{ thumb.url }}" class="img-fluid" alt="{{ product.get_title }}" />
+                    {% endwith %}           
+        </div>
+
+    {% endif %}
+{% endwith %}

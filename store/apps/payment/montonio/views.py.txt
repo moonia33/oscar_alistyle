@@ -1,0 +1,17 @@
+# views.py
+from django.http import JsonResponse
+from .montonio_client import MontonioAPIClient
+
+def get_payment_methods(request, country_code):
+    client = MontonioAPIClient()
+    data = client.get_payment_methods()
+    country_methods = data['paymentMethods']['paymentInitiation']['setup'].get(country_code, {'paymentMethods': []})
+    return JsonResponse({'paymentMethods': country_methods['paymentMethods']})
+
+# urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('get_payment_methods/<str:country_code>/', views.get_payment_methods, name='get_payment_methods'),
+]

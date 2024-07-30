@@ -1,0 +1,23 @@
+
+					<div class="widget-header mr-3">
+						{% if user.is_authenticated %}
+						<a href="{% url 'customer:logout' %}" class="widget-view">
+							<div class="icon-area">
+								<i class="fa fa-user"></i>
+								<span class="notify">3</span>
+							</div>
+
+							<small class="text"> Atsijungti </small>
+						</a>
+						{% else %}
+						<a href="{% url 'customer:summary' %}" class="widget-view">
+							<div class="icon-area">
+								<i class="fa fa-user"></i>
+								<span class="notify">3</span>
+							</div>
+
+							<small class="text"> Paskyra </small>
+						</a>			
+						{% endif %}
+					</div>
+				

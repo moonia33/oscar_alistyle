@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokėjimo Būdai</title>
+    <script src="{% static 'path/to/jquery-2.0.0.min.js' %}"></script>
+</head>
+<body>
+<h1>Pasirinkite Mokėjimo Būdą</h1>
+
+<label for="country-select">Pasirinkite šalį:</label>
+<select id="country-select">
+    <option value="LT">Lietuva</option>
+    <option value="EE">Estija</option>
+    <option value="LV">Latvija</option>
+    <option value="FI">Suomija</option>
+    <option value="PL">Lenkija</option>
+    <option value="DE">Vokietija</option>
+</select>
+
+<div id="payment-methods-container">
+    <!-- Mokėjimo būdai bus dinamiškai atvaizduojami čia -->
+</div>
+
+<script src="{% static 'path/to/your/custom_script.js' %}"></script>
+</body>
+</html>
