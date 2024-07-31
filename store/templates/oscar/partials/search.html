@@ -1,12 +1,11 @@
 {% load i18n %}
-				<form method="GET" action="{% url 'search:search' %}" class="search-header">
-					<div class="input-group w-100">
-					    <input type="text" class="form-control" name="q" placeholder="{% trans 'Search' %}" aria-label="{% trans 'Search' %}">
-					    
-					    <div class="input-group-append">
-					      <button class="btn btn-primary" type="submit">
-					        <i class="fa fa-search"></i> {% trans "Search" %}
-					      </button>
-					    </div>
+			<form method="GET" action="{% url 'search:search' %}" class="search-wrap">
+				<div class="input-group w-100">
+				    <input type="text" class="form-control" style="width:55%;" name="q" placeholder="{% trans 'Search' %}" aria-label="{% trans 'Search' %}">
+				    <div class="input-group-append">
+				      <button class="btn btn-primary" type="submit">
+				        <i class="fa fa-search"></i>
+				      </button>
 				    </div>
-				</form> <!-- search-wrap .end// -->
+			    </div>
+			</form> <!-- search-wrap .end// -->
