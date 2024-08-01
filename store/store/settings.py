@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.basket.apps.BasketConfig',
     'apps.payment.apps.PaymentConfig',
     'oscar.config.Shop',
+    #'apps.search.apps.SearchConfig',
     'oscar.apps.analytics.apps.AnalyticsConfig',
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',  
@@ -201,7 +202,31 @@ AUTHENTICATION_BACKENDS = (
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/sandbox',
+        'ADMIN_URL': 'http://tvparkas.lt:8983/solr/admin/cores',
+        'INCLUDE_SPELLING': True,
+    },
+}
+
+OSCAR_SEARCH_FACETS = {
+    'fields': {
+        'product_class': {'name': ('Type'), 'field': 'product_class'},
+        'rating': {'name': ('Rating'), 'field': 'rating'},
+    },
+    'queries': {
+        'price_range': {
+             'name': ('Price range'),
+             'field': 'price',
+             'queries': [
+                 # This is a list of (name, query) tuples where the name will
+                 # be displayed on the front-end.
+                 (('0 to 20'), '[0 TO 20]'),
+                 (('20 to 40'), '[20 TO 40]'),
+                 (('40 to 60'), '[40 TO 60]'),
+                 (('60+'), '[60 TO *]'),
+             ]
+         },
     },
 }
 

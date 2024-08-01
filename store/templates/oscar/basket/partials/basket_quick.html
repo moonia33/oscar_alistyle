@@ -4,28 +4,33 @@
 {% load image_tags %}
 {% load i18n %}
 
-<div class="box">
+<div class="card-body p-1" style="width: 300px;">
 <!-- itemside // -->
 {% if request.basket.num_lines %}
 {% for line in request.basket.all_lines %}
-<div class="itemside mb-3">
-	<div class="aside">
-    {% with image=line.product.primary_image %}
-        {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
-    <img src="{{ thumb.url }}" class="img-xs" alt="{{ line.product.get_title }}">
-    {% endwith %}
-    </div>
-	<div class="info">
-		<p>{{ line.description }} </p>
-	</div>
-</div><!-- itemside // -->
-{% endfor %}
 
-<div class="btn-group" role="group">
-<button type="button" class="btn btn-outline-primary active">
+        <figure class="itemside mb-2">
+        {% with image=line.product.primary_image %}
+        {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
+				<div class="aside"><img src="{{ thumb.url }}" class="border img-sm" alt="{{ line.product.get_title }}"></div>
+        {% endwith %}
+				<figcaption class="info align-self-center">
+					<a href="{{ line.product.get_absolute_url }}" class="title">{{ line.description }}</a>
+					<strong class="price">{{ line.unit_price_incl_tax|currency:request.basket.currency }}</strong>
+                    <span> {% trans "Qty" %}: {{ line.quantity }} vnt.</span> 
+				</figcaption>
+		</figure>
+
+{% endfor %}
+<hr>
+<div class="d-flex justify-content-center py-1" role="group">
+<button type="button" class="btn  btn-light mr-1">
 <a href="{% url 'basket:summary' %}">{% trans "View basket" %}</a>
 </button>
-<button type="button" class="btn btn-outline-primary">Pirkti</button>
+<button type="button" class="btn btn-outline-primary ml-1">
+<a href="{% url 'checkout:index' %}"<i class="fas fa-shopping-cart"></i> {% trans "Checkout" %}</a>
+</button>
+
 </div>
     {% else %}
     <div class="itemside">
