@@ -1,0 +1,14 @@
+[2024-08-02 14:13:47 +0300] [6497] [INFO] Starting gunicorn 22.0.0
+[2024-08-02 14:13:47 +0300] [6497] [INFO] Listening at: http://127.0.0.1:8000 (6497)
+[2024-08-02 14:13:47 +0300] [6497] [INFO] Using worker: sync
+[2024-08-02 14:13:47 +0300] [6508] [INFO] Booting worker with pid: 6508
+[2024-08-02 14:13:47 +0300] [6509] [INFO] Booting worker with pid: 6509
+[2024-08-02 14:13:47 +0300] [6510] [INFO] Booting worker with pid: 6510
+[2024-08-02 14:25:27 +0300] [6509] [INFO] Worker exiting (pid: 6509)
+[2024-08-02 14:25:27 +0300] [6508] [INFO] Worker exiting (pid: 6508)
+[2024-08-02 14:25:27 +0300] [6510] [INFO] Worker exiting (pid: 6510)
+[2024-08-02 14:25:27 +0300] [6497] [INFO] Handling signal: term
+[2024-08-02 14:25:27 +0300] [6497] [ERROR] Worker (pid:6508) was sent SIGTERM!
+[2024-08-02 14:25:27 +0300] [6497] [ERROR] Worker (pid:6510) was sent SIGTERM!
+[2024-08-02 14:25:27 +0300] [6497] [ERROR] Worker (pid:6509) was sent SIGTERM!
+[2024-08-02 14:25:27 +0300] [6497] [INFO] Shutting down: Master

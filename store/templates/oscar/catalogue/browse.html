@@ -61,15 +61,15 @@
 {% endblock %}
 
 {% block content %}
+<header class="mb-3">
    <div class="form-inline">
-    <form method="get">
+        <form method="get" class="w-100">
         {# Render other search params as hidden inputs #}
         {% for value in selected_facets %}
-            <input type="hidden" name="selected_facets" value="{{ value }}" />
+        <input type="hidden" name="selected_facets" value="{{ value }}" />
         {% endfor %}
-        <input type="hidden" name="q" value="{{ search_form.q.value|default_if_none:"" }}" />
-
-        {% if paginator.count %}
+        <input type="hidden" name="q" value="{{ search_form.q.value|default_if_none:"" }}" />  
+            {% if paginator.count %}
             {% if paginator.num_pages > 1 %}
                 {% blocktrans with start=page_obj.start_index end=page_obj.end_index count num_results=paginator.count %}
                     <strong class="mr-md-auto">{{ num_results }}</strong> result - showing <strong>{{ start }}</strong> to <strong>{{ end }}</strong>.
@@ -82,11 +82,25 @@
                 {% plural %}
                     <strong class="mr-md-auto">{{ num_results }}</strong> results.
                 {% endblocktrans %}
-            {% endif %}
+            {% endif %}      
+			<select class="mr-2 form-control">
+				<option>Latest items</option>
+				<option>Trending</option>
+				<option>Most Popular</option>
+				<option>Cheapest</option>
+			</select>
+
             {% if form %}
                 <div class="float-right">
-                    {% include "oscar/partials/form_field.html" with field=form.sort_by style='horizontal' %}
-                </div>
+                    {% include "oscar/catalogue/partials/form_category_sort.html" with field=form.sort_by style='horizontal' %}
+                
+			<div class="btn-group">
+				<a href="page-listing-grid.html" class="btn btn-light" data-toggle="tooltip" title="List view"> 
+					<i class="fa fa-bars"></i></a>
+				<a href="page-listing-large.html" class="btn btn-light active" data-toggle="tooltip" title="Grid view"> 
+					<i class="fa fa-th"></i></a>
+			</div>  
+            </div>              
             {% endif %}
         {% else %}
             <p>
@@ -95,6 +109,7 @@
         {% endif %}
     </form>
   </div>
+</header>
     {% if products %}
         <section>
             <div>
