@@ -117,15 +117,18 @@
 {# Local scripts #}
 {% block scripts %}
     <!-- Twitter Bootstrap -->
+    <script src="{% static "oscar/js/jquery/jquery.min.js" %}"></script>
     <script src="{% static "oscar/js/bootstrap4/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "oscar/js/bootstrap4/bootstrap.min.js" %}"></script>
     <!-- Oscar -->
     <script src="{% static "oscar/js/oscar/ui.js" %}"></script>
 {% endblock %}
 
 {% block extrascripts %}
     {{ block.super }}
-
+    
     {# jQuery plugins #}
+
     <script src="{% static "oscar/js/mousewheel/jquery.mousewheel.js" %}"></script>
     <script src="{% static "oscar/js/bootstrap4-datetimepicker/moment-with-locales.min.js" %}"></script>
     <script src="{% static "oscar/js/bootstrap4-datetimepicker/tempusdominus-bootstrap-4.min.js" %}"></script>
